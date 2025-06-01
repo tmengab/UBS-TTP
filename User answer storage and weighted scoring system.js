@@ -1,5 +1,5 @@
-// 配置OpenAI API（实际使用时应存储在后端）
-const OPENAI_API_KEY = 'your-api-key'; // 实际项目中应从环境变量获取
+// OpenAI API
+const OPENAI_API_KEY = 'api-key'; 
 
 // 用户数据存储
 const UserData = {
@@ -30,7 +30,6 @@ const UserData = {
         return this.currentSession;
     },
     
-    // 记录答案
     recordAnswer(questionId, selectedOption, isCorrect) {
         this.currentSession.answers.push({
             questionId,
@@ -57,7 +56,7 @@ const UserData = {
         return this.currentSession.score;
     },
     
-    // 保存会话
+    
     saveSession() {
         if (this.currentSession) {
             // 更新现有会话或添加新会话
@@ -124,7 +123,7 @@ Format as JSON: {
             const response = await this._callLLM(prompt);
             return response.queries || [];
         } catch (error) {
-            console.error("LLM查询生成失败:", error);
+            console.error("LLM error:", error);
             return [];
         }
     },
@@ -145,17 +144,17 @@ Format as JSON: {
             })
         });
         
-        if (!response.ok) throw new Error(`API请求失败: ${response.status}`);
+        if (!response.ok) throw new Error(`API error: ${response.status}`);
         const data = await response.json();
         return JSON.parse(data.choices[0].message.content);
     }
 };
 
-// YouTube资源搜索
+// YouTube
 const YouTubeService = {
     async searchVideos(query) {
         // 实际项目中使用YouTube API
-        // 这里是模拟实现
+        // 模拟实现
         const mockVideos = {
             "Python loops tutorial": [
                 {
