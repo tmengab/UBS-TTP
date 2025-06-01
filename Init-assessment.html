@@ -203,1453 +203,1573 @@
     <script>
         // Question database
         const questionBank = {
-            basic: [
-                {
-                    question: "In programming, what is the primary purpose of a 'for' loop?",
-                    options: [
-                        "To repeatedly execute a block of code a specific number of times",
-                        "To define functions",
-                        "To create variables",
-                        "To handle exceptions"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which of the following is NOT a primitive data type?",
-                    options: [
-                        "Integer",
-                        "String",
-                        "Array",
-                        "Boolean"
-                    ],
-                    answer: 2,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which keyword is used to return a value from a function?",
-                    options: [
-                        "return",
-                        "break",
-                        "continue",
-                        "exit"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which operator is used to compare two values for equality?",
-                    options: [
-                        "==",
-                        "=",
-                        "!=",
-                        ">"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In most programming languages, array indices start at what number?",
-                    options: [
-                        "0",
-                        "1",
-                        "2",
-                        "Programmer's choice"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which of the following is NOT a valid variable name?",
-                    options: [
-                        "myVariable",
-                        "2ndVariable",
-                        "_private",
-                        "totalAmount"
-                    ],
-                    answer: 1,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which structure is used to execute different code blocks based on conditions?",
-                    options: [
-                        "if-else",
-                        "for loop",
-                        "while loop",
-                        "function"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In object-oriented programming, a class is a blueprint for what?",
-                    options: [
-                        "Objects",
-                        "Functions",
-                        "Variables",
-                        "Modules"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "A recursive function must include what?",
-                    options: [
-                        "A termination condition",
-                        "Multiple parameters",
-                        "A loop structure",
-                        "Global variables"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which sorting algorithm has a time complexity of O(n log n)?",
-                    options: [
-                        "Quicksort",
-                        "Bubble sort",
-                        "Insertion sort",
-                        "Selection sort"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In memory management, what is a 'memory leak'?",
-                    options: [
-                        "Allocated memory that cannot be released",
-                        "Insufficient memory capacity",
-                        "Memory access conflicts",
-                        "Memory fragmentation"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which of the following is NOT a common design pattern?",
-                    options: [
-                        "Singleton",
-                        "Factory",
-                        "Observer",
-                        "Loop"
-                    ],
-                    answer: 3,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In functional programming, what characteristic ensures functions don't modify external state?",
-                    options: [
-                        "Pure functions",
-                        "Higher-order functions",
-                        "Anonymous functions",
-                        "Recursive functions"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is 'tail recursion' optimization?",
-                    options: [
-                        "Compiler converts recursion to iteration to prevent stack overflow",
-                        "Increases recursion depth limit",
-                        "Reduces number of function parameters",
-                        "Automatically caches recursive results"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "In multithreading, what is a 'deadlock'?",
-                    options: [
-                        "Two or more threads waiting for each other to release resources",
-                        "Thread execution taking too long",
-                        "Number of threads exceeding system limits",
-                        "Thread terminating unexpectedly"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "Which algorithm can solve the 'dining philosophers problem'?",
-                    options: [
-                        "Resource hierarchy solution",
-                        "Quicksort",
-                        "Depth-first search",
-                        "Dynamic programming"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "In compiler theory, what is 'syntactic sugar'?",
-                    options: [
-                        "Syntax designed to make code easier to read and write",
-                        "Compiler optimization technique",
-                        "Component of a parser",
-                        "Code compression technique"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "What is 'currying'?",
-                    options: [
-                        "Transforming a multi-argument function into a sequence of single-argument functions",
-                        "Function caching technique",
-                        "Asynchronous function handling pattern",
-                        "Memory optimization technique"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "In concurrent programming, what is the 'ABA problem'?",
-                    options: [
-                        "A value changes from A to B and back to A, causing comparison to fail",
-                        "Thread A and thread B accessing shared resources simultaneously",
-                        "Boundary condition in atomic operations",
-                        "Memory barrier failure"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "Which of the following is NOT a common garbage collection algorithm?",
-                    options: [
-                        "Mark-and-sweep",
-                        "Reference counting",
-                        "Generational collection",
-                        "Quicksort"
-                    ],
-                    answer: 3,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In programming, what is a 'closure'?",
-                    options: [
-                        "A function together with its lexical environment",
-                        "Program termination condition",
-                        "Unit of memory allocation",
-                        "Code block delimiter"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is 'duck typing'?",
-                    options: [
-                        "Programming style focusing on object behavior rather than type",
-                        "A specific type of class inheritance",
-                        "Dynamic type checking technique",
-                        "Memory allocation strategy"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which of the following is NOT a common programming paradigm?",
-                    options: [
-                        "Object-oriented programming",
-                        "Functional programming",
-                        "Procedural programming",
-                        "Linear programming"
-                    ],
-                    answer: 3,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In exception handling, what is the purpose of the 'finally' block?",
-                    options: [
-                        "Code that executes whether an exception occurs or not",
-                        "Code that executes only when an exception occurs",
-                        "Pre-processing code before exception handling",
-                        "Code for handling specific exception types"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What is a 'callback function'?",
-                    options: [
-                        "A function passed as an argument to another function",
-                        "A recursively called function",
-                        "Program entry function",
-                        "Error handling function"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which of the following is NOT a common code complexity metric?",
-                    options: [
-                        "Time complexity",
-                        "Space complexity",
-                        "Cyclomatic complexity",
-                        "Color complexity"
-                    ],
-                    answer: 3,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In version control, what is the purpose of a 'branch'?",
-                    options: [
-                        "Independent line of development that doesn't affect main code",
-                        "Code backup mechanism",
-                        "Performance optimization technique",
-                        "Code review tool"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What is an 'idempotent operation'?",
-                    options: [
-                        "An operation that has the same effect whether executed once or multiple times",
-                        "High-performance computing operation",
-                        "Atomic operation",
-                        "Parallel operation"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In distributed systems, what is the 'CAP theorem'?",
-                    options: [
-                        "Consistency, Availability, Partition tolerance - can't achieve all three simultaneously",
-                        "Compute, Storage, Network triad",
-                        "Concurrency, Atomicity, Persistence principles",
-                        "Client-Server-Proxy architecture"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "What is 'dependency injection'?",
-                    options: [
-                        "Providing dependencies from outside rather than creating them internally",
-                        "Tight coupling between modules",
-                        "Dynamic library loading technique",
-                        "Memory dependency management"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                }
+    basic: [
+        {
+            id: "basic-loop-1",
+            question: "In programming, what is the primary purpose of a 'for' loop?",
+            options: [
+                "To repeatedly execute a block of code a specific number of times",
+                "To define functions",
+                "To create variables",
+                "To handle exceptions"
             ],
-            fullstack: [
-                {
-                    question: "In HTML, which tag is used to create a hyperlink?",
-                    options: [
-                        "<a>",
-                        "<link>",
-                        "<href>",
-                        "<url>"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In CSS, which property is used to change text color?",
-                    options: [
-                        "color",
-                        "text-color",
-                        "font-color",
-                        "text-style"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In JavaScript, which method is used to output information to the console?",
-                    options: [
-                        "console.log()",
-                        "print()",
-                        "log()",
-                        "console.print()"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In HTTP protocol, what is the main difference between GET and POST requests?",
-                    options: [
-                        "GET retrieves data, POST submits data",
-                        "GET is secure, POST is not",
-                        "GET has length limits, POST doesn't",
-                        "GET is only for HTML, POST is for any content"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which of the following is NOT a frontend framework?",
-                    options: [
-                        "React",
-                        "Angular",
-                        "Vue",
-                        "Django"
-                    ],
-                    answer: 3,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In SQL, which keyword is used to select data from a database?",
-                    options: [
-                        "SELECT",
-                        "GET",
-                        "QUERY",
-                        "FIND"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What is a RESTful API?",
-                    options: [
-                        "API design style based on HTTP protocol",
-                        "A specific programming language",
-                        "Database query interface",
-                        "Frontend framework"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In Node.js, what is the 'event loop'?",
-                    options: [
-                        "Mechanism for handling asynchronous operations",
-                        "Structure for looping through code",
-                        "Event listener",
-                        "Performance analysis tool"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is 'Cross-Origin Resource Sharing' (CORS)?",
-                    options: [
-                        "Allowing resource requests between different origins",
-                        "Data encryption technique",
-                        "Server load balancing",
-                        "Caching strategy"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In React, what is the 'Virtual DOM'?",
-                    options: [
-                        "In-memory representation of DOM for efficient updates",
-                        "Hidden DOM elements",
-                        "Server-side rendered DOM",
-                        "Test DOM structure"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which of the following is NOT a NoSQL database?",
-                    options: [
-                        "MongoDB",
-                        "Cassandra",
-                        "Redis",
-                        "MySQL"
-                    ],
-                    answer: 3,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is 'WebSocket'?",
-                    options: [
-                        "Full-duplex communication protocol",
-                        "Web styling technology",
-                        "Secure transport protocol",
-                        "Image compression format"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In Docker, what is a 'container'?",
-                    options: [
-                        "Lightweight, executable software package",
-                        "Virtual machine",
-                        "Storage volume",
-                        "Network interface"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is 'JWT' (JSON Web Token)?",
-                    options: [
-                        "JSON token used for authentication",
-                        "JavaScript testing tool",
-                        "JSON compression format",
-                        "Web template engine"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "In microservices architecture, what is a 'service mesh'?",
-                    options: [
-                        "Infrastructure layer handling service-to-service communication",
-                        "Service directory",
-                        "Load balancer",
-                        "API gateway"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "What is 'GraphQL'?",
-                    options: [
-                        "API query language",
-                        "Graph database",
-                        "Charting library",
-                        "Grid layout system"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "In OAuth 2.0, what is the 'authorization code' flow?",
-                    options: [
-                        "Process to obtain access tokens via authorization server",
-                        "Password encryption process",
-                        "User registration process",
-                        "Data validation process"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "What is 'Serverless' architecture?",
-                    options: [
-                        "Architecture relying on third-party services to manage servers",
-                        "Architecture without servers",
-                        "Static website architecture",
-                        "Single-page application architecture"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "In web security, what is a 'CSRF' attack?",
-                    options: [
-                        "Cross-Site Request Forgery",
-                        "Cross-Site Scripting",
-                        "SQL Injection",
-                        "Denial of Service"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "What is a 'Progressive Web App' (PWA)?",
-                    options: [
-                        "Web app that provides native app-like experience",
-                        "Webpage that loads progressively",
-                        "Progressively enhanced website",
-                        "Performance-optimized web app"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In CSS, what is 'Flexbox'?",
-                    options: [
-                        "One-dimensional layout model",
-                        "Flexible images",
-                        "Animation framework",
-                        "Responsive design tool"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is a 'Single Page Application' (SPA)?",
-                    options: [
-                        "Web app that dynamically rewrites current page",
-                        "Website with only one HTML page",
-                        "Lightweight web app",
-                        "Mobile-optimized website"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In JavaScript, what is 'Promise' used for?",
-                    options: [
-                        "Handling asynchronous operations",
-                        "Declaring variables",
-                        "Creating objects",
-                        "Defining functions"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which of the following is NOT a common HTTP status code?",
-                    options: [
-                        "200 - Success",
-                        "404 - Not Found",
-                        "500 - Server Error",
-                        "600 - Custom Error"
-                    ],
-                    answer: 3,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In Git, which command creates a new branch?",
-                    options: [
-                        "git branch",
-                        "git new-branch",
-                        "git create",
-                        "git checkout -b"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What is 'responsive design'?",
-                    options: [
-                        "Design that adapts to different screen sizes",
-                        "Fast-responding website",
-                        "Interactive design",
-                        "Animation design"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In SQL, which clause is used to filter results?",
-                    options: [
-                        "WHERE",
-                        "FILTER",
-                        "SEARCH",
-                        "MATCH"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What is a 'CDN'?",
-                    options: [
-                        "Content Delivery Network",
-                        "Code Development Network",
-                        "Central Data Node",
-                        "Cloud Database Network"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In JavaScript, what's the main difference between 'let' and 'var'?",
-                    options: [
-                        "let has block scope, var has function scope",
-                        "let is global, var is local",
-                        "let is only for numbers, var is for any type",
-                        "No difference, they're interchangeable"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is 'WebAssembly'?",
-                    options: [
-                        "Low-level assembly-like language that runs in browsers",
-                        "Web assembly tool",
-                        "Web service framework",
-                        "Web analysis tool"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                }
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-datatype-1",
+            question: "Which of the following is NOT a primitive data type?",
+            options: [
+                "Integer",
+                "String",
+                "Array",
+                "Boolean"
             ],
-            ds: [
-                {
-                    question: "Which data structure follows 'First In First Out' (FIFO) principle?",
-                    options: [
-                        "Queue",
-                        "Stack",
-                        "Linked list",
-                        "Tree"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What is the time complexity for accessing an element at a specific index in an array?",
-                    options: [
-                        "O(1)",
-                        "O(n)",
-                        "O(log n)",
-                        "O(n^2)"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which of the following is NOT a linear data structure?",
-                    options: [
-                        "Tree",
-                        "Array",
-                        "Linked list",
-                        "Queue"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In hash tables, what is a 'collision'?",
-                    options: [
-                        "When two keys map to the same location",
-                        "When hash table is full",
-                        "When key doesn't exist",
-                        "When hash function is incorrect"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which sorting algorithm has worst-case time complexity of O(n^2)?",
-                    options: [
-                        "Bubble sort",
-                        "Merge sort",
-                        "Heap sort",
-                        "Quick sort (average)"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In a binary tree, what is a 'leaf node'?",
-                    options: [
-                        "Node with no children",
-                        "Root node",
-                        "Node with two children",
-                        "Node with maximum value"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What is an 'adjacency list'?",
-                    options: [
-                        "Graph representation storing neighbors for each vertex",
-                        "Method for joining tables",
-                        "Alternative name for array",
-                        "Hash table implementation"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In a binary search tree, how do all values in the left subtree compare to the root value?",
-                    options: [
-                        "Less than root value",
-                        "Greater than root value",
-                        "Equal to root value",
-                        "Unrelated to root value"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is 'dynamic programming'?",
-                    options: [
-                        "Breaking problems into subproblems and storing subproblem solutions",
-                        "Dynamically adjusting algorithm parameters",
-                        "Deciding data structures at runtime",
-                        "Automatic code optimization"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is the time complexity of binary search on a sorted array?",
-                    options: [
-                        "O(log n)",
-                        "O(n)",
-                        "O(n log n)",
-                        "O(1)"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which data structure uses 'Last In First Out' (LIFO) principle?",
-                    options: [
-                        "Stack",
-                        "Queue",
-                        "Linked list",
-                        "Tree"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What is the worst-case time complexity of quicksort?",
-                    options: [
-                        "O(n^2)",
-                        "O(n log n)",
-                        "O(n)",
-                        "O(log n)"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "In graph theory, what is a 'cycle'?",
-                    options: [
-                        "Path that starts and ends at the same vertex",
-                        "Complete traversal of all vertices",
-                        "Alternate name for loop",
-                        "Edge connecting a vertex to itself"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is the space complexity of merge sort?",
-                    options: [
-                        "O(n)",
-                        "O(1)",
-                        "O(log n)",
-                        "O(n^2)"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which data structure is typically used to implement a priority queue?",
-                    options: [
-                        "Heap",
-                        "Array",
-                        "Linked list",
-                        "Stack"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is the time complexity of inserting at the beginning of a linked list?",
-                    options: [
-                        "O(1)",
-                        "O(n)",
-                        "O(log n)",
-                        "O(n^2)"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In a hash table, what is 'open addressing'?",
-                    options: [
-                        "Collision resolution by finding another slot within the table",
-                        "Using external storage for collisions",
-                        "Increasing table size when collisions occur",
-                        "Ignoring collisions"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "What is the time complexity of Dijkstra's algorithm with a binary heap?",
-                    options: [
-                        "O((V+E) log V)",
-                        "O(V^2)",
-                        "O(V log V)",
-                        "O(E log V)"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "What is 'amortized analysis'?",
-                    options: [
-                        "Analyzing average time per operation over worst-case sequence",
-                        "Measuring memory usage",
-                        "Time complexity for average-case inputs",
-                        "Performance analysis of parallel algorithms"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "Which algorithm is used to find strongly connected components in a graph?",
-                    options: [
-                        "Kosaraju's algorithm",
-                        "Dijkstra's algorithm",
-                        "Kruskal's algorithm",
-                        "Prim's algorithm"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "What is the time complexity of the Floyd-Warshall algorithm?",
-                    options: [
-                        "O(V^3)",
-                        "O(V^2)",
-                        "O(V log V)",
-                        "O(V E)"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "Which data structure is optimal for range sum queries with updates?",
-                    options: [
-                        "Segment tree",
-                        "Binary search tree",
-                        "Hash table",
-                        "Stack"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                },
-                {
-                    question: "What is the time complexity of searching in a balanced binary search tree?",
-                    options: [
-                        "O(log n)",
-                        "O(n)",
-                        "O(1)",
-                        "O(n log n)"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which sorting algorithm is stable?",
-                    options: [
-                        "Merge sort",
-                        "Quick sort",
-                        "Heap sort",
-                        "Selection sort"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is the main advantage of a doubly linked list over a singly linked list?",
-                    options: [
-                        "Can traverse in both directions",
-                        "Uses less memory",
-                        "Faster insertion",
-                        "No advantage"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "In a complete binary tree with n nodes, what is the height?",
-                    options: [
-                        "⌊log₂n⌋",
-                        "n/2",
-                        "n",
-                        "log n"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which data structure is used for breadth-first search?",
-                    options: [
-                        "Queue",
-                        "Stack",
-                        "Heap",
-                        "Tree"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What is the time complexity of inserting into a hash table?",
-                    options: [
-                        "O(1) average case",
-                        "O(n) worst case",
-                        "O(log n) average case",
-                        "O(n) average case"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "Which algorithm is used to find the minimum spanning tree?",
-                    options: [
-                        "Prim's algorithm",
-                        "Dijkstra's algorithm",
-                        "Depth-first search",
-                        "Breadth-first search"
-                    ],
-                    answer: 0,
-                    difficulty: "medium",
-                    weight: 2
-                },
-                {
-                    question: "What is the time complexity of the Knuth-Morris-Pratt string matching algorithm?",
-                    options: [
-                        "O(n+m)",
-                        "O(nm)",
-                        "O(n log m)",
-                        "O(m log n)"
-                    ],
-                    answer: 0,
-                    difficulty: "hard",
-                    weight: 3
-                }
+            answer: 2,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-function-1",
+            question: "Which keyword is used to return a value from a function?",
+            options: [
+                "return",
+                "break",
+                "continue",
+                "exit"
             ],
-            "data-science": [
-                {
-                    question: "What is the primary purpose of pandas in Python?",
-                    options: [
-                        "Data manipulation and analysis",
-                        "Web development",
-                        "Game development",
-                        "System programming"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which of the following is NOT a supervised learning algorithm?",
-                    options: [
-                        "K-means clustering",
-                        "Linear regression",
-                        "Decision trees",
-                        "Support vector machines"
-                    ],
-                    answer: 0,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "What does 'NaN' represent in data science?",
-                    
-                    options: [
-                        "Not a Number",
-                        "Null value",
-                        "Negative value",
-                        "New array notation"
-                    ],
-                    answer: 1,
-                    difficulty: "easy",
-                    weight: 1
-                },
-                {
-                    question: "Which of these is NOT a supervised learning algorithm?",
-                    options: [
-                    "Linear Regression",
-                    "K-Means Clustering",
-                    "Decision Trees",
-                    "Support Vector Machines"
-                ],
-                answer: 1,
-                difficulty: "easy",
-                weight: 1
-            },
-            {
-                question: "What does the term 'feature' refer to in machine learning?",
-                options: [
-                    "An input variable used for making predictions",
-                    "A visualization technique",
-                    "A type of neural network",
-                    "A performance metric"
-                ],
-                answer: 0,
-                difficulty: "easy",
-                weight: 1
-            },
-            {
-                question: "Which function is used to read a CSV file in pandas?",
-                options: [
-                    "read_csv()",
-                    "open_csv()",
-                    "load_csv()",
-                    "import_csv()"
-                ],
-                answer: 0,
-                difficulty: "easy",
-                weight: 1
-            },
-            {
-                question: "What is the purpose of a confusion matrix?",
-                options: [
-                    "To evaluate classification model performance",
-                    "To visualize high-dimensional data",
-                    "To clean missing values",
-                    "To normalize data"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "What is the main advantage of using NumPy arrays over Python lists?",
-                options: [
-                    "Faster operations and less memory usage",
-                    "More flexible data types",
-                    "Built-in visualization methods",
-                    "Automatic parallel processing"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "Which technique is used to handle overfitting in machine learning models?",
-                options: [
-                    "Regularization",
-                    "Feature elimination",
-                    "Data normalization",
-                    "All of the above"
-                ],
-                answer: 3,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "What is the purpose of train_test_split() in scikit-learn?",
-                options: [
-                    "To split data into training and testing sets",
-                    "To divide features into categories",
-                    "To separate numerical and categorical variables",
-                    "To normalize the dataset"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "What does PCA stand for in dimensionality reduction?",
-                options: [
-                    "Principal Component Analysis",
-                    "Primary Correlation Algorithm",
-                    "Partial Component Assessment",
-                    "Pattern Classification Approach"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "Which metric is NOT typically used for regression problems?",
-                options: [
-                    "Accuracy",
-                    "Mean Squared Error",
-                    "R-squared",
-                    "Mean Absolute Error"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "What is the purpose of one-hot encoding?",
-                options: [
-                    "To convert categorical variables into binary vectors",
-                    "To normalize numerical features",
-                    "To handle missing values",
-                    "To reduce dimensionality"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "What is the difference between classification and regression?",
-                options: [
-                    "Classification predicts categories, regression predicts continuous values",
-                    "Classification uses neural networks, regression uses decision trees",
-                    "Classification is unsupervised, regression is supervised",
-                    "There is no difference"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "What does the term 'bias-variance tradeoff' refer to?",
-                options: [
-                    "Balancing model complexity to avoid under/overfitting",
-                    "Choosing between different algorithms",
-                    "Selecting features for a model",
-                    "Deciding between accuracy and precision"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "In a neural network, what does the activation function do?",
-                options: [
-                    "Introduces non-linearity to the model",
-                    "Normalizes the input data",
-                    "Optimizes the learning rate",
-                    "Regularizes the weights"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "What is the purpose of the learning rate in gradient descent?",
-                options: [
-                    "Controls the step size during optimization",
-                    "Determines the number of iterations",
-                    "Sets the regularization strength",
-                    "Defines the batch size"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "What is the main advantage of using cross-validation?",
-                options: [
-                    "More reliable estimate of model performance",
-                    "Faster training time",
-                    "Automatic feature selection",
-                    "Built-in hyperparameter tuning"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "Which of these is NOT a common loss function for classification?",
-                options: [
-                    "Mean Squared Error",
-                    "Cross-Entropy Loss",
-                    "Hinge Loss",
-                    "Log Loss"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "What is the purpose of dropout in neural networks?",
-                options: [
-                    "Prevent overfitting by randomly deactivating neurons",
-                    "Speed up training by reducing network size",
-                    "Normalize layer outputs",
-                    "Initialize weights properly"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "What does ROC AUC score measure?",
-                options: [
-                    "The ability of a classifier to distinguish between classes",
-                    "The accuracy of regression predictions",
-                    "The speed of model training",
-                    "The variance of feature importance"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "What is the main purpose of word embeddings in NLP?",
-                options: [
-                    "Represent words as dense vectors capturing semantic meaning",
-                    "Count word frequencies in documents",
-                    "Remove stop words from text",
-                    "Tokenize sentences into words"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "Which of these is NOT a common ensemble method?",
-                options: [
-                    "K-Nearest Neighbors",
-                    "Random Forest",
-                    "Gradient Boosting",
-                    "Stacking"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "What is the purpose of early stopping in training neural networks?",
-                options: [
-                    "Stop training when validation performance stops improving",
-                    "Pause training to adjust hyperparameters",
-                    "Skip initial epochs to save time",
-                    "Reduce batch size gradually"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            },
-            {
-                question: "What does the term 'feature engineering' refer to?",
-                options: [
-                    "Creating new input features from raw data",
-                    "Selecting the best machine learning algorithm",
-                    "Designing the user interface for data analysis",
-                    "Visualizing high-dimensional datasets"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "Which of these is NOT a common data preprocessing step?",
-                options: [
-                    "Training the final model",
-                    "Handling missing values",
-                    "Feature scaling",
-                    "Encoding categorical variables"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "What is the purpose of the Elbow Method in clustering?",
-                options: [
-                    "Determine the optimal number of clusters",
-                    "Select features for dimensionality reduction",
-                    "Evaluate classification performance",
-                    "Tune regularization parameters"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "Which of these is NOT a common evaluation metric for classification?",
-                options: [
-                    "Mean Absolute Percentage Error",
-                    "Precision",
-                    "Recall",
-                    "F1 Score"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "What is the main advantage of using a pipeline in scikit-learn?",
-                options: [
-                    "Chain multiple processing steps into a single object",
-                    "Parallelize model training",
-                    "Automatically select the best algorithm",
-                    "Visualize the data processing workflow"
-                ],
-                answer: 0,
-                difficulty: "medium",
-                weight: 2
-            },
-            {
-                question: "What is the purpose of TF-IDF in text processing?",
-                options: [
-                    "Weigh word importance based on frequency in document vs. corpus",
-                    "Count occurrences of each word",
-                    "Remove punctuation from text",
-                    "Convert words to lowercase"
-                ],
-                answer: 0,
-                difficulty: "hard",
-                weight: 3
-            }
-        ]
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-operator-1",
+            question: "Which operator is used to compare two values for equality?",
+            options: [
+                "==",
+                "=",
+                "!=",
+                ">"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-array-1",
+            question: "In most programming languages, array indices start at what number?",
+            options: [
+                "0",
+                "1",
+                "2",
+                "Programmer's choice"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-variable-1",
+            question: "Which of the following is NOT a valid variable name?",
+            options: [
+                "myVariable",
+                "2ndVariable",
+                "_private",
+                "totalAmount"
+            ],
+            answer: 1,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-control-1",
+            question: "Which structure is used to execute different code blocks based on conditions?",
+            options: [
+                "if-else",
+                "for loop",
+                "while loop",
+                "function"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-oop-1",
+            question: "In object-oriented programming, a class is a blueprint for what?",
+            options: [
+                "Objects",
+                "Functions",
+                "Variables",
+                "Modules"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-recursion-1",
+            question: "A recursive function must include what?",
+            options: [
+                "A termination condition",
+                "Multiple parameters",
+                "A loop structure",
+                "Global variables"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-algo-1",
+            question: "Which sorting algorithm has a time complexity of O(n log n)?",
+            options: [
+                "Quicksort",
+                "Bubble sort",
+                "Insertion sort",
+                "Selection sort"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-memory-1",
+            question: "In memory management, what is a 'memory leak'?",
+            options: [
+                "Allocated memory that cannot be released",
+                "Insufficient memory capacity",
+                "Memory access conflicts",
+                "Memory fragmentation"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-pattern-1",
+            question: "Which of the following is NOT a common design pattern?",
+            options: [
+                "Singleton",
+                "Factory",
+                "Observer",
+                "Loop"
+            ],
+            answer: 3,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-fp-1",
+            question: "In functional programming, what characteristic ensures functions don't modify external state?",
+            options: [
+                "Pure functions",
+                "Higher-order functions",
+                "Anonymous functions",
+                "Recursive functions"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-recursion-2",
+            question: "What is 'tail recursion' optimization?",
+            options: [
+                "Compiler converts recursion to iteration to prevent stack overflow",
+                "Increases recursion depth limit",
+                "Reduces number of function parameters",
+                "Automatically caches recursive results"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "basic-thread-1",
+            question: "In multithreading, what is a 'deadlock'?",
+            options: [
+                "Two or more threads waiting for each other to release resources",
+                "Thread execution taking too long",
+                "Number of threads exceeding system limits",
+                "Thread terminating unexpectedly"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "basic-algo-2",
+            question: "Which algorithm can solve the 'dining philosophers problem'?",
+            options: [
+                "Resource hierarchy solution",
+                "Quicksort",
+                "Depth-first search",
+                "Dynamic programming"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "basic-compiler-1",
+            question: "In compiler theory, what is 'syntactic sugar'?",
+            options: [
+                "Syntax designed to make code easier to read and write",
+                "Compiler optimization technique",
+                "Component of a parser",
+                "Code compression technique"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "basic-fp-2",
+            question: "What is 'currying'?",
+            options: [
+                "Transforming a multi-argument function into a sequence of single-argument functions",
+                "Function caching technique",
+                "Asynchronous function handling pattern",
+                "Memory optimization technique"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "basic-concurrency-1",
+            question: "In concurrent programming, what is the 'ABA problem'?",
+            options: [
+                "A value changes from A to B and back to A, causing comparison to fail",
+                "Thread A and thread B accessing shared resources simultaneously",
+                "Boundary condition in atomic operations",
+                "Memory barrier failure"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "basic-gc-1",
+            question: "Which of the following is NOT a common garbage collection algorithm?",
+            options: [
+                "Mark-and-sweep",
+                "Reference counting",
+                "Generational collection",
+                "Quicksort"
+            ],
+            answer: 3,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-closure-1",
+            question: "In programming, what is a 'closure'?",
+            options: [
+                "A function together with its lexical environment",
+                "Program termination condition",
+                "Unit of memory allocation",
+                "Code block delimiter"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-typing-1",
+            question: "What is 'duck typing'?",
+            options: [
+                "Programming style focusing on object behavior rather than type",
+                "A specific type of class inheritance",
+                "Dynamic type checking technique",
+                "Memory allocation strategy"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-paradigm-1",
+            question: "Which of the following is NOT a common programming paradigm?",
+            options: [
+                "Object-oriented programming",
+                "Functional programming",
+                "Procedural programming",
+                "Linear programming"
+            ],
+            answer: 3,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-exception-1",
+            question: "In exception handling, what is the purpose of the 'finally' block?",
+            options: [
+                "Code that executes whether an exception occurs or not",
+                "Code that executes only when an exception occurs",
+                "Pre-processing code before exception handling",
+                "Code for handling specific exception types"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-callback-1",
+            question: "What is a 'callback function'?",
+            options: [
+                "A function passed as an argument to another function",
+                "A recursively called function",
+                "Program entry function",
+                "Error handling function"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-complexity-1",
+            question: "Which of the following is NOT a common code complexity metric?",
+            options: [
+                "Time complexity",
+                "Space complexity",
+                "Cyclomatic complexity",
+                "Color complexity"
+            ],
+            answer: 3,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-vcs-1",
+            question: "In version control, what is the purpose of a 'branch'?",
+            options: [
+                "Independent line of development that doesn't affect main code",
+                "Code backup mechanism",
+                "Performance optimization technique",
+                "Code review tool"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "basic-idempotent-1",
+            question: "What is an 'idempotent operation'?",
+            options: [
+                "An operation that has the same effect whether executed once or multiple times",
+                "High-performance computing operation",
+                "Atomic operation",
+                "Parallel operation"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "basic-cap-1",
+            question: "In distributed systems, what is the 'CAP theorem'?",
+            options: [
+                "Consistency, Availability, Partition tolerance - can't achieve all three simultaneously",
+                "Compute, Storage, Network triad",
+                "Concurrency, Atomicity, Persistence principles",
+                "Client-Server-Proxy architecture"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "basic-di-1",
+            question: "What is 'dependency injection'?",
+            options: [
+                "Providing dependencies from outside rather than creating them internally",
+                "Tight coupling between modules",
+                "Dynamic library loading technique",
+                "Memory dependency management"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        }
+    ],
+    fullstack: [
+        {
+            id: "fs-html-1",
+            question: "In HTML, which tag is used to create a hyperlink?",
+            options: [
+                "<a>",
+                "<link>",
+                "<href>",
+                "<url>"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-css-1",
+            question: "In CSS, which property is used to change text color?",
+            options: [
+                "color",
+                "text-color",
+                "font-color",
+                "text-style"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-js-1",
+            question: "In JavaScript, which method is used to output information to the console?",
+            options: [
+                "console.log()",
+                "print()",
+                "log()",
+                "console.print()"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-http-1",
+            question: "In HTTP protocol, what is the main difference between GET and POST requests?",
+            options: [
+                "GET retrieves data, POST submits data",
+                "GET is secure, POST is not",
+                "GET has length limits, POST doesn't",
+                "GET is only for HTML, POST is for any content"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-framework-1",
+            question: "Which of the following is NOT a frontend framework?",
+            options: [
+                "React",
+                "Angular",
+                "Vue",
+                "Django"
+            ],
+            answer: 3,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-sql-1",
+            question: "In SQL, which keyword is used to select data from a database?",
+            options: [
+                "SELECT",
+                "GET",
+                "QUERY",
+                "FIND"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-api-1",
+            question: "What is a RESTful API?",
+            options: [
+                "API design style based on HTTP protocol",
+                "A specific programming language",
+                "Database query interface",
+                "Frontend framework"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-node-1",
+            question: "In Node.js, what is the 'event loop'?",
+            options: [
+                "Mechanism for handling asynchronous operations",
+                "Structure for looping through code",
+                "Event listener",
+                "Performance analysis tool"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-cors-1",
+            question: "What is 'Cross-Origin Resource Sharing' (CORS)?",
+            options: [
+                "Allowing resource requests between different origins",
+                "Data encryption technique",
+                "Server load balancing",
+                "Caching strategy"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-react-1",
+            question: "In React, what is the 'Virtual DOM'?",
+            options: [
+                "In-memory representation of DOM for efficient updates",
+                "Hidden DOM elements",
+                "Server-side rendered DOM",
+                "Test DOM structure"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-db-1",
+            question: "Which of the following is NOT a NoSQL database?",
+            options: [
+                "MongoDB",
+                "Cassandra",
+                "Redis",
+                "MySQL"
+            ],
+            answer: 3,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-websocket-1",
+            question: "What is 'WebSocket'?",
+            options: [
+                "Full-duplex communication protocol",
+                "Web styling technology",
+                "Secure transport protocol",
+                "Image compression format"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-docker-1",
+            question: "In Docker, what is a 'container'?",
+            options: [
+                "Lightweight, executable software package",
+                "Virtual machine",
+                "Storage volume",
+                "Network interface"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-jwt-1",
+            question: "What is 'JWT' (JSON Web Token)?",
+            options: [
+                "JSON token used for authentication",
+                "JavaScript testing tool",
+                "JSON compression format",
+                "Web template engine"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "fs-microservices-1",
+            question: "In microservices architecture, what is a 'service mesh'?",
+            options: [
+                "Infrastructure layer handling service-to-service communication",
+                "Service directory",
+                "Load balancer",
+                "API gateway"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "fs-graphql-1",
+            question: "What is 'GraphQL'?",
+            options: [
+                "API query language",
+                "Graph database",
+                "Charting library",
+                "Grid layout system"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "fs-oauth-1",
+            question: "In OAuth 2.0, what is the 'authorization code' flow?",
+            options: [
+                "Process to obtain access tokens via authorization server",
+                "Password encryption process",
+                "User registration process",
+                "Data validation process"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "fs-serverless-1",
+            question: "What is 'Serverless' architecture?",
+            options: [
+                "Architecture relying on third-party services to manage servers",
+                "Architecture without servers",
+                "Static website architecture",
+                "Single-page application architecture"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "fs-security-1",
+            question: "In web security, what is a 'CSRF' attack?",
+            options: [
+                "Cross-Site Request Forgery",
+                "Cross-Site Scripting",
+                "SQL Injection",
+                "Denial of Service"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "fs-pwa-1",
+            question: "What is a 'Progressive Web App' (PWA)?",
+            options: [
+                "Web app that provides native app-like experience",
+                "Webpage that loads progressively",
+                "Progressively enhanced website",
+                "Performance-optimized web app"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-css-2",
+            question: "In CSS, what is 'Flexbox'?",
+            options: [
+                "One-dimensional layout model",
+                "Flexible images",
+                "Animation framework",
+                "Responsive design tool"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-spa-1",
+            question: "What is a 'Single Page Application' (SPA)?",
+            options: [
+                "Web app that dynamically rewrites current page",
+                "Website with only one HTML page",
+                "Lightweight web app",
+                "Mobile-optimized website"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-js-2",
+            question: "In JavaScript, what is 'Promise' used for?",
+            options: [
+                "Handling asynchronous operations",
+                "Declaring variables",
+                "Creating objects",
+                "Defining functions"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-http-2",
+            question: "Which of the following is NOT a common HTTP status code?",
+            options: [
+                "200 - Success",
+                "404 - Not Found",
+                "500 - Server Error",
+                "600 - Custom Error"
+            ],
+            answer: 3,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-git-1",
+            question: "In Git, which command creates a new branch?",
+            options: [
+                "git branch",
+                "git new-branch",
+                "git create",
+                "git checkout -b"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-design-1",
+            question: "What is 'responsive design'?",
+            options: [
+                "Design that adapts to different screen sizes",
+                "Fast-responding website",
+                "Interactive design",
+                "Animation design"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-sql-2",
+            question: "In SQL, which clause is used to filter results?",
+            options: [
+                "WHERE",
+                "FILTER",
+                "SEARCH",
+                "MATCH"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-cdn-1",
+            question: "What is a 'CDN'?",
+            options: [
+                "Content Delivery Network",
+                "Code Development Network",
+                "Central Data Node",
+                "Cloud Database Network"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "fs-js-3",
+            question: "In JavaScript, what's the main difference between 'let' and 'var'?",
+            options: [
+                "let has block scope, var has function scope",
+                "let is global, var is local",
+                "let is only for numbers, var is for any type",
+                "No difference, they're interchangeable"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "fs-wasm-1",
+            question: "What is 'WebAssembly'?",
+            options: [
+                "Low-level assembly-like language that runs in browsers",
+                "Web assembly tool",
+                "Web service framework",
+                "Web analysis tool"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        }
+    ],
+    ds: [
+        {
+            id: "ds-queue-1",
+            question: "Which data structure follows 'First In First Out' (FIFO) principle?",
+            options: [
+                "Queue",
+                "Stack",
+                "Linked list",
+                "Tree"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-array-1",
+            question: "What is the time complexity for accessing an element at a specific index in an array?",
+            options: [
+                "O(1)",
+                "O(n)",
+                "O(log n)",
+                "O(n^2)"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-linear-1",
+            question: "Which of the following is NOT a linear data structure?",
+            options: [
+                "Tree",
+                "Array",
+                "Linked list",
+                "Queue"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-hash-1",
+            question: "In hash tables, what is a 'collision'?",
+            options: [
+                "When two keys map to the same location",
+                "When hash table is full",
+                "When key doesn't exist",
+                "When hash function is incorrect"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-sort-1",
+            question: "Which sorting algorithm has worst-case time complexity of O(n^2)?",
+            options: [
+                "Bubble sort",
+                "Merge sort",
+                "Heap sort",
+                "Quick sort (average)"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-tree-1",
+            question: "In a binary tree, what is a 'leaf node'?",
+            options: [
+                "Node with no children",
+                "Root node",
+                "Node with two children",
+                "Node with maximum value"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-graph-1",
+            question: "What is an 'adjacency list'?",
+            options: [
+                "Graph representation storing neighbors for each vertex",
+                "Method for joining tables",
+                "Alternative name for array",
+                "Hash table implementation"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-bst-1",
+            question: "In a binary search tree, how do all values in the left subtree compare to the root value?",
+            options: [
+                "Less than root value",
+                "Greater than root value",
+                "Equal to root value",
+                "Unrelated to root value"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-dp-1",
+            question: "What is 'dynamic programming'?",
+            options: [
+                "Breaking problems into subproblems and storing subproblem solutions",
+                "Dynamically adjusting algorithm parameters",
+                "Deciding data structures at runtime",
+                "Automatic code optimization"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-search-1",
+            question: "What is the time complexity of binary search on a sorted array?",
+            options: [
+                "O(log n)",
+                "O(n)",
+                "O(n log n)",
+                "O(1)"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-stack-1",
+            question: "Which data structure uses 'Last In First Out' (LIFO) principle?",
+            options: [
+                "Stack",
+                "Queue",
+                "Linked list",
+                "Tree"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-sort-2",
+            question: "What is the worst-case time complexity of quicksort?",
+            options: [
+                "O(n^2)",
+                "O(n log n)",
+                "O(n)",
+                "O(log n)"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-graph-2",
+            question: "In graph theory, what is a 'cycle'?",
+            options: [
+                "Path that starts and ends at the same vertex",
+                "Complete traversal of all vertices",
+                "Alternate name for loop",
+                "Edge connecting a vertex to itself"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-sort-3",
+            question: "What is the space complexity of merge sort?",
+            options: [
+                "O(n)",
+                "O(1)",
+                "O(log n)",
+                "O(n^2)"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-pq-1",
+            question: "Which data structure is typically used to implement a priority queue?",
+            options: [
+                "Heap",
+                "Array",
+                "Linked list",
+                "Stack"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-ll-1",
+            question: "What is the time complexity of inserting at the beginning of a linked list?",
+            options: [
+                "O(1)",
+                "O(n)",
+                "O(log n)",
+                "O(n^2)"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-hash-2",
+            question: "In a hash table, what is 'open addressing'?",
+            options: [
+                "Collision resolution by finding another slot within the table",
+                "Using external storage for collisions",
+                "Increasing table size when collisions occur",
+                "Ignoring collisions"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "ds-algo-1",
+            question: "What is the time complexity of Dijkstra's algorithm with a binary heap?",
+            options: [
+                "O((V+E) log V)",
+                "O(V^2)",
+                "O(V log V)",
+                "O(E log V)"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "ds-analysis-1",
+            question: "What is 'amortized analysis'?",
+            options: [
+                "Analyzing average time per operation over worst-case sequence",
+                "Measuring memory usage",
+                "Time complexity for average-case inputs",
+                "Performance analysis of parallel algorithms"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "ds-graph-3",
+            question: "Which algorithm is used to find strongly connected components in a graph?",
+            options: [
+                "Kosaraju's algorithm",
+                "Dijkstra's algorithm",
+                "Kruskal's algorithm",
+                "Prim's algorithm"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "ds-algo-2",
+            question: "What is the time complexity of the Floyd-Warshall algorithm?",
+            options: [
+                "O(V^3)",
+                "O(V^2)",
+                "O(V log V)",
+                "O(V E)"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "ds-range-1",
+            question: "Which data structure is optimal for range sum queries with updates?",
+            options: [
+                "Segment tree",
+                "Binary search tree",
+                "Hash table",
+                "Stack"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        },
+        {
+            id: "ds-bst-2",
+            question: "What is the time complexity of searching in a balanced binary search tree?",
+            options: [
+                "O(log n)",
+                "O(n)",
+                "O(1)",
+                "O(n log n)"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-sort-4",
+            question: "Which sorting algorithm is stable?",
+            options: [
+                "Merge sort",
+                "Quick sort",
+                "Heap sort",
+                "Selection sort"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-ll-2",
+            question: "What is the main advantage of a doubly linked list over a singly linked list?",
+            options: [
+                "Can traverse in both directions",
+                "Uses less memory",
+                "Faster insertion",
+                "No advantage"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-tree-2",
+            question: "In a complete binary tree with n nodes, what is the height?",
+            options: [
+                "⌊log₂n⌋",
+                "n/2",
+                "n",
+                "log n"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-search-2",
+            question: "Which data structure is used for breadth-first search?",
+            options: [
+                "Queue",
+                "Stack",
+                "Heap",
+                "Tree"
+            ],
+            answer: 0,
+            difficulty: "easy",
+            weight: 1
+        },
+        {
+            id: "ds-hash-3",
+            question: "What is the time complexity of inserting into a hash table?",
+            options: [
+                "O(1) average case",
+                "O(n) worst case",
+                "O(log n) average case",
+                "O(n) average case"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-mst-1",
+            question: "Which algorithm is used to find the minimum spanning tree?",
+            options: [
+                "Prim's algorithm",
+                "Dijkstra's algorithm",
+                "Depth-first search",
+                "Breadth-first search"
+            ],
+            answer: 0,
+            difficulty: "medium",
+            weight: 2
+        },
+        {
+            id: "ds-string-1",
+            question: "What is the time complexity of the Knuth-Morris-Pratt string matching algorithm?",
+            options: [
+                "O(n+m)",
+                "O(nm)",
+                "O(n log m)",
+                "O(m log n)"
+            ],
+            answer: 0,
+            difficulty: "hard",
+            weight: 3
+        }
+    ],
+    "data-science": 
+        [
+  {
+    id: "ds-pandas-1",
+    question: "What is the primary purpose of pandas in Python?",
+    options: [
+      "Data manipulation and analysis",
+      "Web development",
+      "Game development",
+      "System programming"
+    ],
+    answer: 0,
+    difficulty: "easy",
+    weight: 1
+  },
+  {
+    id: "ds-kmeans-1",
+    question: "Which of the following is NOT a supervised learning algorithm?",
+    options: [
+      "K-means clustering",
+      "Linear regression",
+      "Decision trees",
+      "Support vector machines"
+    ],
+    answer: 0,
+    difficulty: "easy",
+    weight: 1
+  },
+  {
+    id: "ds-nan-1",
+    question: "What does 'NaN' represent in data science?",
+    options: [
+      "Not a Number",
+      "Null value",
+      "Negative value",
+      "New array notation"
+    ],
+    answer: 1,
+    difficulty: "easy",
+    weight: 1
+  },
+  {
+    id: "ds-kmeans-2",
+    question: "Which of these is NOT a supervised learning algorithm?",
+    options: [
+      "Linear Regression",
+      "K-Means Clustering",
+      "Decision Trees",
+      "Support Vector Machines"
+    ],
+    answer: 1,
+    difficulty: "easy",
+    weight: 1
+  },
+  {
+    id: "ds-feature-1",
+    question: "What does the term 'feature' refer to in machine learning?",
+    options: [
+      "An input variable used for making predictions",
+      "A visualization technique",
+      "A type of neural network",
+      "A performance metric"
+    ],
+    answer: 0,
+    difficulty: "easy",
+    weight: 1
+  },
+  {
+    id: "ds-readcsv-1",
+    question: "Which function is used to read a CSV file in pandas?",
+    options: [
+      "read_csv()",
+      "open_csv()",
+      "load_csv()",
+      "import_csv()"
+    ],
+    answer: 0,
+    difficulty: "easy",
+    weight: 1
+  },
+  {
+    id: "ds-confusionmatrix-1",
+    question: "What is the purpose of a confusion matrix?",
+    options: [
+      "To evaluate classification model performance",
+      "To visualize high-dimensional data",
+      "To clean missing values",
+      "To normalize data"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-numpy-1",
+    question: "What is the main advantage of using NumPy arrays over Python lists?",
+    options: [
+      "Faster operations and less memory usage",
+      "More flexible data types",
+      "Built-in visualization methods",
+      "Automatic parallel processing"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-overfitting-1",
+    question: "Which technique is used to handle overfitting in machine learning models?",
+    options: [
+      "Regularization",
+      "Feature elimination",
+      "Data normalization",
+      "All of the above"
+    ],
+    answer: 3,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-traintestsplit-1",
+    question: "What is the purpose of train_test_split() in scikit-learn?",
+    options: [
+      "To split data into training and testing sets",
+      "To divide features into categories",
+      "To separate numerical and categorical variables",
+      "To normalize the dataset"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-pca-1",
+    question: "What does PCA stand for in dimensionality reduction?",
+    options: [
+      "Principal Component Analysis",
+      "Primary Correlation Algorithm",
+      "Partial Component Assessment",
+      "Pattern Classification Approach"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-regressionmetric-1",
+    question: "Which metric is NOT typically used for regression problems?",
+    options: [
+      "Accuracy",
+      "Mean Squared Error",
+      "R-squared",
+      "Mean Absolute Error"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-onehotencoding-1",
+    question: "What is the purpose of one-hot encoding?",
+    options: [
+      "To convert categorical variables into binary vectors",
+      "To normalize numerical features",
+      "To handle missing values",
+      "To reduce dimensionality"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-classificationregression-1",
+    question: "What is the difference between classification and regression?",
+    options: [
+      "Classification predicts categories, regression predicts continuous values",
+      "Classification uses neural networks, regression uses decision trees",
+      "Classification is unsupervised, regression is supervised",
+      "There is no difference"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-biasvariance-1",
+    question: "What does the term 'bias-variance tradeoff' refer to?",
+    options: [
+      "Balancing model complexity to avoid under/overfitting",
+      "Choosing between different algorithms",
+      "Selecting features for a model",
+      "Deciding between accuracy and precision"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-activationfunction-1",
+    question: "In a neural network, what does the activation function do?",
+    options: [
+      "Introduces non-linearity to the model",
+      "Normalizes the input data",
+      "Optimizes the learning rate",
+      "Regularizes the weights"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-learningrate-1",
+    question: "What is the purpose of the learning rate in gradient descent?",
+    options: [
+      "Controls the step size during optimization",
+      "Determines the number of iterations",
+      "Sets the regularization strength",
+      "Defines the batch size"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-crossvalidation-1",
+    question: "What is the main advantage of using cross-validation?",
+    options: [
+      "More reliable estimate of model performance",
+      "Faster training time",
+      "Automatic feature selection",
+      "Built-in hyperparameter tuning"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-lossfunction-1",
+    question: "Which of these is NOT a common loss function for classification?",
+    options: [
+      "Mean Squared Error",
+      "Cross-Entropy Loss",
+      "Hinge Loss",
+      "Log Loss"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-dropout-1",
+    question: "What is the purpose of dropout in neural networks?",
+    options: [
+      "Prevent overfitting by randomly deactivating neurons",
+      "Speed up training by reducing network size",
+      "Normalize layer outputs",
+      "Initialize weights properly"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-rocauc-1",
+    question: "What does ROC AUC score measure?",
+    options: [
+      "The ability of a classifier to distinguish between classes",
+      "The accuracy of regression predictions",
+      "The speed of model training",
+      "The variance of feature importance"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-wordembedding-1",
+    question: "What is the main purpose of word embeddings in NLP?",
+    options: [
+      "Represent words as dense vectors capturing semantic meaning",
+      "Count word frequencies in documents",
+      "Remove stop words from text",
+      "Tokenize sentences into words"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-ensemblemethod-1",
+    question: "Which of these is NOT a common ensemble method?",
+    options: [
+      "K-Nearest Neighbors",
+      "Random Forest",
+      "Gradient Boosting",
+      "Stacking"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-earlystopping-1",
+    question: "What is the purpose of early stopping in training neural networks?",
+    options: [
+      "Stop training when validation performance stops improving",
+      "Pause training to adjust hyperparameters",
+      "Skip initial epochs to save time",
+      "Reduce batch size gradually"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  },
+  {
+    id: "ds-featureengineering-1",
+    question: "What does the term 'feature engineering' refer to?",
+    options: [
+      "Creating new input features from raw data",
+      "Selecting the best machine learning algorithm",
+      "Designing the user interface for data analysis",
+      "Visualizing high-dimensional datasets"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-datapreprocessing-1",
+    question: "Which of these is NOT a common data preprocessing step?",
+    options: [
+      "Training the final model",
+      "Handling missing values",
+      "Feature scaling",
+      "Encoding categorical variables"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-elbowmethod-1",
+    question: "What is the purpose of the Elbow Method in clustering?",
+    options: [
+      "Determine the optimal number of clusters",
+      "Select features for dimensionality reduction",
+      "Evaluate classification performance",
+      "Tune regularization parameters"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-evaluationmetric-1",
+    question: "Which of these is NOT a common evaluation metric for classification?",
+    options: [
+      "Mean Absolute Percentage Error",
+      "Precision",
+      "Recall",
+      "F1 Score"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-pipeline-1",
+    question: "What is the main advantage of using a pipeline in scikit-learn?",
+    options: [
+      "Chain multiple processing steps into a single object",
+      "Parallelize model training",
+      "Automatically select the best algorithm",
+      "Visualize the data processing workflow"
+    ],
+    answer: 0,
+    difficulty: "medium",
+    weight: 2
+  },
+  {
+    id: "ds-tfidf-1",
+    question: "What is the purpose of TF-IDF in text processing?",
+    options: [
+      "Weigh word importance based on frequency in document vs. corpus",
+      "Count occurrences of each word",
+      "Remove punctuation from text",
+      "Convert words to lowercase"
+    ],
+    answer: 0,
+    difficulty: "hard",
+    weight: 3
+  }
+]
     };
