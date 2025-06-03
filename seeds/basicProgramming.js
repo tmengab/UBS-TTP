@@ -364,21 +364,21 @@ const materials = [
     conceptName: 'Loops',
     level: 1,
     title: 'Loop Basics',
-    url: 'https://example.com/loops-basic',
+    url: 'https://www.youtube.com/watch?v=eSYeHlwDCNA',
     mediaType: 'video'
   },
   {
     conceptName: 'Loops',
     level: 2,
     title: 'Intermediate Loop Patterns',
-    url: 'https://example.com/loops-intermediate',
+    url: 'https://www.youtube.com/watch?v=KWgYha0clzw',
     mediaType: 'article'
   },
   {
     conceptName: 'Loops',
     level: 3,
     title: 'Advanced Loop Optimization',
-    url: 'https://example.com/loops-advanced',
+    url: 'https://www.youtube.com/watch?v=APWy6Pc83gE',
     mediaType: 'interactive'
   },
 
@@ -387,21 +387,21 @@ const materials = [
     conceptName: 'Conditionals',
     level: 1,
     title: 'If-Else Fundamentals',
-    url: 'https://example.com/conditionals-basic',
+    url: 'https://www.youtube.com/watch?v=HQ3dCWjfRZ4',
     mediaType: 'video'
   },
   {
     conceptName: 'Conditionals',
     level: 2,
     title: 'Truthy/Falsy Values',
-    url: 'https://example.com/conditionals-intermediate',
+    url: 'https://www.youtube.com/watch?v=AEQ7knLvJdw',
     mediaType: 'article'
   },
   {
     conceptName: 'Conditionals',
     level: 3,
     title: 'Nullish Coalescing & Optional Chaining',
-    url: 'https://example.com/conditionals-advanced',
+    url: 'https://www.youtube.com/watch?v=RbqlLR2i4kk',
     mediaType: 'interactive'
   },
 
@@ -410,21 +410,21 @@ const materials = [
     conceptName: 'Functions',
     level: 1,
     title: 'Function Declaration vs Expression',
-    url: 'https://example.com/functions-basic',
+    url: 'https://www.youtube.com/watch?v=qz7Nq1tV7Io',
     mediaType: 'video'
   },
   {
     conceptName: 'Functions',
     level: 2,
     title: 'Arrow Functions Explained',
-    url: 'https://example.com/functions-intermediate',
+    url: 'https://www.youtube.com/watch?v=h33Srr5J9nY',
     mediaType: 'article'
   },
   {
     conceptName: 'Functions',
     level: 3,
     title: 'Closures and Higher-Order Functions',
-    url: 'https://example.com/functions-advanced',
+    url: 'https://www.youtube.com/watch?v=0aKZvNNf8BA',
     mediaType: 'interactive'
   },
 
@@ -433,21 +433,21 @@ const materials = [
     conceptName: 'Data Types',
     level: 1,
     title: 'Primitive Types Overview',
-    url: 'https://example.com/datatypes-basic',
+    url: 'https://www.youtube.com/watch?v=OmcFVHpb0v0',
     mediaType: 'video'
   },
   {
     conceptName: 'Data Types',
     level: 2,
     title: 'Type Coercion Deep Dive',
-    url: 'https://example.com/datatypes-intermediate',
+    url: 'https://www.youtube.com/watch?v=QE2lHTtUpqU',
     mediaType: 'article'
   },
   {
     conceptName: 'Data Types',
     level: 3,
     title: 'Symbols and Object Immutability',
-    url: 'https://example.com/datatypes-advanced',
+    url: 'https://www.youtube.com/shorts/22Xzt6udfpI',
     mediaType: 'interactive'
   },
 
@@ -456,21 +456,21 @@ const materials = [
     conceptName: 'Variables',
     level: 1,
     title: 'Var vs Let vs Const',
-    url: 'https://example.com/variables-basic',
+    url: 'https://www.youtube.com/watch?v=XgSjoHgy3Rk',
     mediaType: 'video'
   },
   {
     conceptName: 'Variables',
     level: 2,
     title: 'Hoisting and TDZ Explained',
-    url: 'https://example.com/variables-intermediate',
+    url: 'https://www.youtube.com/watch?v=KJo0o4DnqdI',
     mediaType: 'article'
   },
   {
     conceptName: 'Variables',
     level: 3,
     title: 'Memory Management with Variables',
-    url: 'https://example.com/variables-advanced',
+    url: 'https://www.youtube.com/watch?v=5OJRqkYbK-4',
     mediaType: 'interactive'
   }
 ];
