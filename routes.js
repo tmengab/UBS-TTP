@@ -7,7 +7,7 @@ const {
   UserProgress
 } = require('../models');
 
-// 获取所有知识点
+// get all knowlegdes
 router.get('/concepts', async (req, res) => {
   try {
     const concepts = await Concept.find({ track: 'basic' });
@@ -17,12 +17,12 @@ router.get('/concepts', async (req, res) => {
   }
 });
 
-// 开始/继续学习某个知识点
+// continuing tracking
 router.get('/start/:userId/:conceptId', async (req, res) => {
   try {
     const { userId, conceptId } = req.params;
     
-    // 获取或创建进度记录
+    
     let progress = await UserProgress.findOne({ userId, conceptId }) || 
       new UserProgress({ userId, conceptId });
     
@@ -37,7 +37,7 @@ router.get('/start/:userId/:conceptId', async (req, res) => {
     
     if (!nextQuestion) {
       // 检查是否可以升级
-      if (progress.correctInRow >= 2 && progress.currentLevel < 5) {
+      if (progress.correctInRow >= 1 && progress.currentLevel < 3) {
         progress.currentLevel++;
         progress.correctInRow = 0;
         progress.attemptedQuestions = [];
@@ -60,7 +60,7 @@ router.get('/start/:userId/:conceptId', async (req, res) => {
       
       return res.json({ 
         action: 'complete',
-        message: '已完成当前级别所有问题'
+        message: 'completed all Qs in same levels'
       });
     }
     
@@ -74,7 +74,7 @@ router.get('/start/:userId/:conceptId', async (req, res) => {
   }
 });
 
-// 提交答案
+// Ans the Qs
 router.post('/answer', async (req, res) => {
   try {
     const { userId, questionId, answer } = req.body;
@@ -84,7 +84,7 @@ router.post('/answer', async (req, res) => {
     
     const isCorrect = question.correctAnswer === answer;
     
-    // 更新进度
+    // track progress
     const update = {
       $addToSet: { attemptedQuestions: questionId },
       lastUpdated: new Date()
@@ -102,7 +102,7 @@ router.post('/answer', async (req, res) => {
       { new: true, upsert: true }
     );
     
-    // 获取学习材料(仅在答错时)
+    // materials
     const materials = isCorrect ? [] : await Material.find({
       conceptId: question.conceptId,
       level: progress.currentLevel
@@ -120,7 +120,7 @@ router.post('/answer', async (req, res) => {
   }
 });
 
-// 获取用户进度
+// track users
 router.get('/progress/:userId', async (req, res) => {
   try {
     const progress = await UserProgress.find({ userId: req.params.userId })
