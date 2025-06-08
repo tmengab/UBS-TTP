@@ -80,7 +80,7 @@ const fsQuestions = [
     ],
     correctAnswer: 1,
     explanation: "It batches DOM updates by comparing with a lightweight virtual representation."
-
+  },
   // ========== React Framework ==========
   {
     conceptName: 'React Framework',
@@ -154,7 +154,7 @@ const fsQuestions = [
     ],
     correctAnswer: 0,
     explanation: "It provides a way to share values across the component tree without explicit prop passing."
-
+  },
   // ========== Backend Development ==========
   {
     conceptName: 'Backend Development',
@@ -228,7 +228,7 @@ const fsQuestions = [
     ],
     correctAnswer: 1,
     explanation: "Eager loading or data loaders can combine multiple queries into one."
-
+  },
   // ========== Database Systems ==========
   {
     conceptName: 'Database Systems',
@@ -302,7 +302,7 @@ const fsQuestions = [
     ],
     correctAnswer: 1,
     explanation: "Sharding distributes data across multiple machines to parallelize workloads."
-
+  },
   // ========== DevOps & Deployment ==========
   {
     conceptName: 'DevOps & Deployment',
@@ -491,4 +491,8 @@ const fsMaterials = [
   }
 ];
 
-module.exports = { fsConcepts, fsQuestions, fsMaterials };
+module.exports = {
+  concepts: fsConcepts,
+  questions: fsQuestions,
+  materials: fsMaterials
+};

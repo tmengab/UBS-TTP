@@ -474,3 +474,9 @@ const materials = [
     mediaType: 'interactive'
   }
 ];
+
+module.exports = {
+  concepts: basicConcepts,
+  questions: questions,
+  materials: materials // 如果有 materials
+};

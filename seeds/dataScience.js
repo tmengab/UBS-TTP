@@ -520,4 +520,8 @@ const dsMaterials = [
   }
 ];
 
-module.exports = { dsConcepts, dsQuestions, dsMaterials };
+module.exports = {
+  concepts: dsConcepts,
+  questions: dsQuestions,
+  materials: dsMaterials
+};
