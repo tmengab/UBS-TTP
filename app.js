@@ -6,6 +6,7 @@ const conceptsRoutes = require('./routes/concepts');
 const questionsRoutes = require('./routes/questions');
 const progressRoutes = require('./routes/progress');
 const materialsRoutes = require('./routes/materials');
+const userRoutes = require('./routes/user');
 
 const app = express();
 connectDB();
@@ -17,6 +18,7 @@ app.use('/api/concepts', conceptsRoutes);
 app.use('/api/questions', questionsRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/materials', materialsRoutes);
+app.use('/api/user', userRoutes);
 
 app.get('/', (req, res) => res.send('API Running'));
 
