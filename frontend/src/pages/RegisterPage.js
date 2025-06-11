@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../services';
 
 function RegisterPage() {
   const [username, setUsername] = useState('');
@@ -14,20 +15,11 @@ function RegisterPage() {
     setError('');
     setSuccess('');
     try {
-      const res = await fetch('/api/user/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password })
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setSuccess('Registration successful! Redirecting to login...');
-        setTimeout(() => navigate('/login'), 1500);
-      } else {
-        setError(data.message || 'Registration failed');
-      }
+      await registerUser({ username, email, password });
+      setSuccess('Registration successful! Redirecting to login...');
+      setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
-      setError('Network error');
+      setError(err.message);
     }
   };
 

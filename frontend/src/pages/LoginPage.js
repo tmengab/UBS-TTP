@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../services';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -11,20 +12,11 @@ function LoginPage() {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('/api/user/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
-      const data = await res.json();
-      if (res.ok) {
-        localStorage.setItem('token', data.token);
-        navigate('/');
-      } else {
-        setError(data.message || 'Login failed');
-      }
+      const data = await loginUser({ username, password });
+      localStorage.setItem('token', data.token);
+      navigate('/');
     } catch (err) {
-      setError('Network error');
+      setError(err.message);
     }
   };
 
