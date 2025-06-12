@@ -1,28 +1,44 @@
-import React from 'react';
-
-const mockHistory = [
-  { id: '1', track: 'basicProgramming', score: 80, date: '2024-05-01' },
-  { id: '2', track: 'fullStack', score: 90, date: '2024-05-02' },
-];
+import React, { useEffect, useState } from 'react';
+import { fetchUserProgress } from '../services';
 
 function HistoryPage() {
+  const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const userId = localStorage.getItem('token') || 'guest'; // 实际项目应用真实 userId
+
+  useEffect(() => {
+    fetchUserProgress(userId)
+      .then(data => {
+        setHistory(data);
+        setLoading(false);
+      })
+      .catch(e => {
+        setError(e.message);
+        setLoading(false);
+      });
+  }, [userId]);
+
+  if (loading) return <div>Loading history...</div>;
+  if (error) return <div style={{ color: 'red' }}>{error}</div>;
+
   return (
     <div style={{ maxWidth: 600, margin: '40px auto' }}>
       <h2>Assessment History</h2>
       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
           <tr>
-            <th style={{ borderBottom: '1px solid #ddd', padding: 8 }}>Track</th>
-            <th style={{ borderBottom: '1px solid #ddd', padding: 8 }}>Score</th>
-            <th style={{ borderBottom: '1px solid #ddd', padding: 8 }}>Date</th>
+            <th style={{ borderBottom: '1px solid #ddd', padding: 8 }}>Concept</th>
+            <th style={{ borderBottom: '1px solid #ddd', padding: 8 }}>Level</th>
+            <th style={{ borderBottom: '1px solid #ddd', padding: 8 }}>Last Updated</th>
           </tr>
         </thead>
         <tbody>
-          {mockHistory.map(h => (
-            <tr key={h.id}>
-              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>{h.track}</td>
-              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>{h.score}</td>
-              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>{h.date}</td>
+          {history.map(h => (
+            <tr key={h._id}>
+              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>{h.concept?.name || h.conceptId}</td>
+              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>{h.currentLevel}</td>
+              <td style={{ borderBottom: '1px solid #eee', padding: 8 }}>{new Date(h.lastUpdated).toLocaleString()}</td>
             </tr>
           ))}
         </tbody>

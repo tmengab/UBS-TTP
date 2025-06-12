@@ -1,42 +1,38 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-// mock weak concepts and videos
-const mockConcepts = [
-  { name: 'Loops', difficulty: 'Beginner' },
-  { name: 'Variable Declaration', difficulty: 'Beginner' },
-];
-const mockVideos = [
-  { title: 'JavaScript Loops Explained', url: 'https://youtube.com/loop', channel: 'Frontend Classroom', duration: '10:21' },
-  { title: 'Variables and Scope', url: 'https://youtube.com/var', channel: 'Programming Basics', duration: '8:45' },
-];
-
 function ResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { track, answers, questions } = location.state || {};
+  const { history, conceptId } = location.state || {};
 
-  if (!questions || !answers) return <div>No result data.</div>;
+  if (!history || !history.length) return <div>No result data.</div>;
 
-  // Calculate weighted score
+  // 计算分数
   let totalWeight = 0;
   let earnedWeight = 0;
-  questions.forEach((q, i) => {
-    const weight = q.level;
+  history.forEach(({ question, selected, result }) => {
+    const weight = question.level || 1;
     totalWeight += weight;
-    if (answers[i] === q.correctAnswer) {
+    if (result.isCorrect) {
       earnedWeight += weight;
     }
   });
   const score = totalWeight ? Math.round((earnedWeight / totalWeight) * 100) : 0;
 
-  // Find weak concepts and explanations
-  const weakConcepts = questions
-    .map((q, i) => (answers[i] !== q.correctAnswer ? q.conceptName : null))
-    .filter(Boolean);
-  const explanations = questions
-    .map((q, i) => (answers[i] !== q.correctAnswer ? q.explanation : null))
-    .filter(Boolean);
+  // 薄弱知识点和解释
+  const weakConcepts = history
+    .filter(({ result }) => !result.isCorrect)
+    .map(({ question }) => question.conceptName || question.conceptId);
+  const explanations = history
+    .filter(({ result }) => !result.isCorrect)
+    .map(({ result }) => result.explanation);
+
+  // 推荐材料（所有答错题目的材料合并去重）
+  const allMaterials = history
+    .filter(({ result }) => result.materials && result.materials.length > 0)
+    .flatMap(({ result }) => result.materials);
+  const uniqueMaterials = Array.from(new Map(allMaterials.map(m => [m.url, m])).values());
 
   return (
     <div style={{ maxWidth: 600, margin: '40px auto' }}>
@@ -60,6 +56,16 @@ function ResultPage() {
           ))}
         </ul>
       ) : null}
+      <h3>Recommended Learning Materials</h3>
+      {uniqueMaterials.length ? (
+        <ul>
+          {uniqueMaterials.map((m, i) => (
+            <li key={i}>
+              <a href={m.url} target="_blank" rel="noopener noreferrer">{m.title}</a> ({m.mediaType})
+            </li>
+          ))}
+        </ul>
+      ) : <p>No recommendations. Great job!</p>}
       <button style={{ marginTop: 24 }} onClick={() => navigate('/')}>Back to Home</button>
     </div>
   );

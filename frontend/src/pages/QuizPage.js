@@ -1,116 +1,125 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
-// Mock backend-aligned question bank
-const questionBank = {
-  basicProgramming: [
-    {
-      conceptName: 'Loops',
-      level: 1,
-      questionText: 'Which loop structure guarantees at least one execution?',
-      options: ['for loop', 'while loop', 'do-while loop', 'forEach loop'],
-      correctAnswer: 2,
-      explanation: 'do-while executes the code block once before checking the condition.'
-    },
-    {
-      conceptName: 'Conditionals',
-      level: 1,
-      questionText: "Which operator checks equality without type coercion?",
-      options: ['==', '===', '=', '!='],
-      correctAnswer: 1,
-      explanation: '=== checks value and type.'
-    }
-  ],
-  fullStack: [
-    {
-      conceptName: 'Frontend',
-      level: 1,
-      questionText: 'Which HTML tag is used to create a hyperlink?',
-      options: ['<a>', '<link>', '<url>', '<href>'],
-      correctAnswer: 0,
-      explanation: 'The <a> tag defines a hyperlink.'
-    }
-  ],
-  dataStructures: [
-    {
-      conceptName: 'Stack',
-      level: 1,
-      questionText: 'What is the characteristic of a stack?',
-      options: ['FIFO', 'LIFO', 'FILO', 'LILO'],
-      correctAnswer: 1,
-      explanation: 'Stack is Last-In-First-Out.'
-    }
-  ],
-  dataScience: [
-    {
-      conceptName: 'Pandas',
-      level: 1,
-      questionText: 'Which function is used to read a CSV file in pandas?',
-      options: ['read_csv', 'load_csv', 'import_csv', 'open_csv'],
-      correctAnswer: 0,
-      explanation: 'read_csv() is the correct function.'
-    }
-  ]
-};
+import { fetchNextQuestion, submitAnswer } from '../services';
 
 function QuizPage() {
-  const { track } = useParams();
+  const { track: conceptId } = useParams();
   const navigate = useNavigate();
-  const questions = questionBank[track] || [];
-  const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const userId = localStorage.getItem('token') || 'guest'; // 实际项目应用真实 userId
+  const [question, setQuestion] = useState(null);
+  const [currentLevel, setCurrentLevel] = useState(1);
+  const [selected, setSelected] = useState(undefined);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [history, setHistory] = useState([]); // {question, selected, result}
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [explanation, setExplanation] = useState('');
+  const [isCorrect, setIsCorrect] = useState(null);
+  const [materials, setMaterials] = useState([]);
 
-  if (!questions.length) return <div>No questions available for this track.</div>;
+  useEffect(() => {
+    loadNext();
+    // eslint-disable-next-line
+  }, []);
 
-  const handleSelect = idx => {
-    setAnswers(prev => {
-      const next = [...prev];
-      next[current] = idx;
-      return next;
-    });
-  };
-
-  const handleNext = () => {
-    if (current < questions.length - 1) {
-      setCurrent(c => c + 1);
-    } else {
-      navigate('/result', { state: { track, answers, questions } });
+  async function loadNext() {
+    setLoading(true);
+    setSelected(undefined);
+    setShowExplanation(false);
+    setExplanation('');
+    setIsCorrect(null);
+    setMaterials([]);
+    try {
+      const data = await fetchNextQuestion(userId, conceptId);
+      if (!data || !data.question) {
+        // 跳转到结果页，带上历史答题记录
+        navigate('/result', { state: { history, conceptId } });
+        return;
+      }
+      setQuestion(data.question);
+      setCurrentLevel(data.currentLevel);
+      setLoading(false);
+    } catch (e) {
+      setError(e.message);
+      setLoading(false);
     }
-  };
+  }
 
-  const q = questions[current];
-  const progress = ((current + 1) / questions.length) * 100;
+  async function handleSubmit() {
+    if (selected === undefined) return;
+    setLoading(true);
+    try {
+      const res = await submitAnswer({ userId, questionId: question._id, userAnswer: selected });
+      setShowExplanation(true);
+      setExplanation(res.explanation);
+      setIsCorrect(res.isCorrect);
+      setMaterials(res.materials || []);
+      setHistory(prev => [...prev, { question, selected, result: res }]);
+      setLoading(false);
+    } catch (e) {
+      setError(e.message);
+      setLoading(false);
+    }
+  }
+
+  function handleNext() {
+    loadNext();
+  }
+
+  if (loading) return <div>Loading question...</div>;
+  if (error) return <div style={{ color: 'red' }}>{error}</div>;
+  if (!question) return <div>No more questions.</div>;
 
   return (
     <div style={{ maxWidth: 600, margin: '40px auto' }}>
-      <h2>Quiz - {track}</h2>
-      <div style={{ height: 8, background: '#eee', borderRadius: 4, margin: '16px 0' }}>
-        <div style={{ width: `${progress}%`, height: 8, background: '#3498db', borderRadius: 4 }} />
-      </div>
+      <h2>Quiz</h2>
       <div style={{ margin: '24px 0' }}>
-        <h3>Q{current + 1}: {q.questionText}</h3>
-        {q.options.map((opt, i) => (
+        <h3>{question.questionText}</h3>
+        {question.options.map((opt, i) => (
           <div key={i} style={{ margin: '8px 0' }}>
             <label>
               <input
                 type="radio"
                 name="option"
-                checked={answers[current] === i}
-                onChange={() => handleSelect(i)}
+                checked={selected === i}
+                onChange={() => setSelected(i)}
+                disabled={showExplanation}
               />{' '}
               {opt}
             </label>
           </div>
         ))}
       </div>
-      <button
-        className="btn"
-        style={{ padding: '8px 24px', background: '#3498db', color: '#fff', border: 'none', borderRadius: 4 }}
-        disabled={answers[current] === undefined}
-        onClick={handleNext}
-      >
-        {current === questions.length - 1 ? 'Submit' : 'Next'}
-      </button>
+      {!showExplanation ? (
+        <button
+          className="btn"
+          style={{ padding: '8px 24px', background: '#3498db', color: '#fff', border: 'none', borderRadius: 4 }}
+          disabled={selected === undefined}
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
+      ) : (
+        <div>
+          <div style={{ margin: '16px 0', color: isCorrect ? 'green' : 'red' }}>
+            {isCorrect ? 'Correct!' : 'Incorrect.'}
+          </div>
+          <div style={{ marginBottom: 12 }}><b>Explanation:</b> {explanation}</div>
+          {materials.length > 0 && (
+            <div style={{ marginBottom: 12 }}>
+              <b>Recommended Materials:</b>
+              <ul>
+                {materials.map((m, idx) => (
+                  <li key={idx}>
+                    <a href={m.url} target="_blank" rel="noopener noreferrer">{m.title}</a> ({m.mediaType})
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <button onClick={handleNext}>Next Question</button>
+        </div>
+      )}
     </div>
   );
 }
