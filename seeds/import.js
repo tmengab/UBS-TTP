@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 // 1. import models
-const Concept = require('../models/concept');
+const Concept = require('../models/Concept');
 const Question = require('../models/Question');
 const Material = require('../models/Material');
 
@@ -11,13 +11,15 @@ const basic = require('./basicProgramming');
 const ds = require('./dataStructures');
 const fs = require('./fullStack');
 const dsc = require('./dataScience');
+const ai = require('./aiLearning');
 
 // 3. format all seeds
 const allSeeds = [
   { ...basic, track: 'basic' },
   { ...ds, track: 'data-structures' },
   { ...fs, track: 'full-stack' },
-  { ...dsc, track: 'data-science' }
+  { ...dsc, track: 'data-science' },
+  { ...ai, track: 'ai-learning' }
 ];
 
 async function importData() {

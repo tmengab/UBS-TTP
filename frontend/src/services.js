@@ -50,6 +50,7 @@ export async function fetchNextQuestion(userId, conceptId) {
 
 // 提交答案
 export async function submitAnswer({ userId, questionId, userAnswer }) {
+  console.log('submitAnswer 参数:', { userId, questionId, userAnswer });
   const res = await fetch('/api/questions/answer', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -74,4 +75,12 @@ export async function fetchUserProgress(userId) {
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'Failed to fetch progress');
   return data.data;
+}
+
+export async function createLearningTrack(topic, userId) {
+  return fetch("/api/chatbot/create-learning-track", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ topic, userId })
+  });
 } 

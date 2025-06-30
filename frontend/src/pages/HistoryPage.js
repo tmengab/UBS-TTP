@@ -5,7 +5,7 @@ function HistoryPage() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const userId = localStorage.getItem('token') || 'guest'; // 实际项目应用真实 userId
+  const userId = localStorage.getItem('userId') || 'guest';
 
   useEffect(() => {
     fetchUserProgress(userId)

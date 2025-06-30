@@ -38,7 +38,8 @@ exports.login = async (req, res) => {
       return res.status(400).json({ message: 'Invalid username or password.' });
     }
     const token = jwt.sign({ userId: user._id, username: user.username }, JWT_SECRET, { expiresIn: '7d' });
-    res.json({ token, username: user.username });
+    console.log('Login response:', { token, username: user.username, userId: user._id });
+    res.json({ token, username: user.username, userId: user._id });
   } catch (err) {
     res.status(500).json({ message: 'Server error.' });
   }

@@ -402,7 +402,7 @@ const materials = [
     level: 3,
     title: 'Nullish Coalescing & Optional Chaining',
     url: 'https://www.youtube.com/watch?v=RbqlLR2i4kk',
-    mediaType: 'interactive'
+    mediaType: 'video'
   },
 
   // ========== Functions ==========
@@ -418,7 +418,7 @@ const materials = [
     level: 2,
     title: 'Arrow Functions Explained',
     url: 'https://www.youtube.com/watch?v=h33Srr5J9nY',
-    mediaType: 'article'
+    mediaType: 'video'
   },
   {
     conceptName: 'Functions',
@@ -441,14 +441,14 @@ const materials = [
     level: 2,
     title: 'Type Coercion Deep Dive',
     url: 'https://www.youtube.com/watch?v=QE2lHTtUpqU',
-    mediaType: 'article'
+    mediaType: 'video'
   },
   {
     conceptName: 'Data Types',
     level: 3,
     title: 'Symbols and Object Immutability',
     url: 'https://www.youtube.com/shorts/22Xzt6udfpI',
-    mediaType: 'interactive'
+    mediaType: 'video'
   },
 
   // ========== Variables ==========
@@ -464,14 +464,14 @@ const materials = [
     level: 2,
     title: 'Hoisting and TDZ Explained',
     url: 'https://www.youtube.com/watch?v=KJo0o4DnqdI',
-    mediaType: 'article'
+    mediaType: 'video'
   },
   {
     conceptName: 'Variables',
     level: 3,
     title: 'Memory Management with Variables',
     url: 'https://www.youtube.com/watch?v=5OJRqkYbK-4',
-    mediaType: 'interactive'
+    mediaType: 'video'
   }
 ];
 

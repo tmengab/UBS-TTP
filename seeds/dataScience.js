@@ -409,21 +409,21 @@ const dsMaterials = [
     conceptName: 'Python Basics',
     level: 1,
     title: 'Python for Data Science',
-    url: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI',
+    url: 'https://www.youtube.com/watch?v=mkv5mxYu0Wk',
     mediaType: 'video'
   },
   {
     conceptName: 'Python Basics',
     level: 2,
     title: 'NumPy Arrays Explained',
-    url: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI',
-    mediaType: 'article'
+    url: 'https://www.youtube.com/watch?v=lLRBYKwP8GQ',
+    mediaType: 'video'
   },
   {
     conceptName: 'Python Basics',
     level: 3,
     title: 'Advanced Python Patterns',
-    url: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI',
+    url: 'https://www.youtube.com/watch?v=mkv5mxYu0Wk',
     mediaType: 'interactive'
   },
 
@@ -432,21 +432,21 @@ const dsMaterials = [
     conceptName: 'Pandas',
     level: 1,
     title: 'Pandas Fundamentals',
-    url: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI',
+    url: 'https://www.youtube.com/watch?v=DkjCaAMBGWM&t=57s',
     mediaType: 'video'
   },
   {
     conceptName: 'Pandas',
     level: 2,
     title: 'Advanced Data Manipulation',
-    url: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI',
+    url: 'https://medium.com/@sayahfares19/advanced-pandas-21-powerful-tips-for-efficient-data-manipulation-71a2f87276ef',
     mediaType: 'article'
   },
   {
     conceptName: 'Pandas',
     level: 3,
     title: 'Optimizing Pandas Performance',
-    url: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI',
+    url: 'https://medium.com/bigdatarepublic/advanced-pandas-optimize-speed-and-memory-a654b53be6c2',
     mediaType: 'interactive'
   },
 

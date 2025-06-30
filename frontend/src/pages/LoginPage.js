@@ -13,8 +13,17 @@ function LoginPage() {
     setError('');
     try {
       const data = await loginUser({ username, password });
-      localStorage.setItem('token', data.token);
-      navigate('/');
+      
+      if (data && data.userId && data.token) {
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('username', data.username);
+        localStorage.setItem('token', data.token);
+        console.log('Login response:', { token: data.token, username: data.username, userId: data.userId });
+        console.log('Login data:', data);
+        navigate('/dashboard');
+      } else {
+        setError("Login failed: Invalid data received from server.");
+      }
     } catch (err) {
       setError(err.message);
     }

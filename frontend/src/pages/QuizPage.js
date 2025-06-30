@@ -1,46 +1,60 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchNextQuestion, submitAnswer } from '../services';
 
 function QuizPage() {
-  const { track: conceptId } = useParams();
-  const navigate = useNavigate();
-  const userId = localStorage.getItem('token') || 'guest'; // 实际项目应用真实 userId
+  const userId = localStorage.getItem('userId');
+  const { conceptId } = useParams();
+
   const [question, setQuestion] = useState(null);
   const [currentLevel, setCurrentLevel] = useState(1);
   const [selected, setSelected] = useState(undefined);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [history, setHistory] = useState([]); // {question, selected, result}
-  const [showExplanation, setShowExplanation] = useState(false);
-  const [explanation, setExplanation] = useState('');
-  const [isCorrect, setIsCorrect] = useState(null);
+  const [score, setScore] = useState(0);
   const [materials, setMaterials] = useState([]);
+  const [levelCompleted, setLevelCompleted] = useState(false);
+  const [answerResult, setAnswerResult] = useState(null);
+  const [showFeedback, setShowFeedback] = useState(false);
 
+  // 加载题目
   useEffect(() => {
+    if (!userId) {
+      window.location.href = '/login';
+      return;
+    }
     loadNext();
     // eslint-disable-next-line
-  }, []);
+  }, [userId, conceptId]);
 
   async function loadNext() {
     setLoading(true);
     setSelected(undefined);
-    setShowExplanation(false);
-    setExplanation('');
-    setIsCorrect(null);
+    setError('');
     setMaterials([]);
+    setScore(0);
+    setLevelCompleted(false);
     try {
+      console.log('Fetching next question for:', { userId, conceptId });
       const data = await fetchNextQuestion(userId, conceptId);
+      console.log('fetchNextQuestion data:', data);
       if (!data || !data.question) {
-        // 跳转到结果页，带上历史答题记录
-        navigate('/result', { state: { history, conceptId } });
+        console.log('No question returned:', data);
+        setLevelCompleted(true);
+        setScore(data && typeof data.score === 'number' ? data.score : 0);
+        setMaterials((data && Array.isArray(data.materials)) ? data.materials : []);
+        setLoading(false);
+        setQuestion(null);
+        setCurrentLevel(data && data.currentLevel ? data.currentLevel : currentLevel);
         return;
       }
+      console.log('新题目 id:', data.question && data.question._id);
       setQuestion(data.question);
       setCurrentLevel(data.currentLevel);
       setLoading(false);
     } catch (e) {
-      setError(e.message);
+      console.error('Error:', e);
+      setError('No questions found for this level. Please contact admin or check your question bank.');
       setLoading(false);
     }
   }
@@ -49,79 +63,167 @@ function QuizPage() {
     if (selected === undefined) return;
     setLoading(true);
     try {
-      const res = await submitAnswer({ userId, questionId: question._id, userAnswer: selected });
-      setShowExplanation(true);
-      setExplanation(res.explanation);
-      setIsCorrect(res.isCorrect);
-      setMaterials(res.materials || []);
-      setHistory(prev => [...prev, { question, selected, result: res }]);
+      const result = await submitAnswer({ userId, questionId: question._id, userAnswer: selected });
+      setAnswerResult(result);
+      setMaterials(result.materials || []);
+      setScore(result.score || 0);
+      setShowFeedback(true);
       setLoading(false);
+    } catch (e) {
+      console.error('submitAnswer error:', e);
+      setError(e.message);
+      setLoading(false);
+    }
+  }
+
+  async function handleNextLevel() {
+    setLoading(true);
+    try {
+      // 升级level
+      await fetch(`/api/progress/${userId}/${conceptId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ newLevel: currentLevel + 1 })
+      });
+      setCurrentLevel(currentLevel + 1);
+      setLevelCompleted(false);
+      setScore(0);
+      setMaterials([]);
+      setQuestion(null);
+      setSelected(undefined);
+      loadNext();
     } catch (e) {
       setError(e.message);
       setLoading(false);
     }
   }
 
-  function handleNext() {
-    loadNext();
+  async function handleRedoLevel() {
+    setLoading(true);
+    try {
+      // 清空本级
+      await fetch(`/api/progress/${userId}/${conceptId}/${currentLevel}`, {
+        method: 'DELETE'
+      });
+      setLevelCompleted(false);
+      setScore(0);
+      setMaterials([]);
+      setQuestion(null);
+      setSelected(undefined);
+      loadNext();
+    } catch (e) {
+      setError(e.message);
+      setLoading(false);
+    }
   }
 
+  if (!userId) return null;
   if (loading) return <div>Loading question...</div>;
   if (error) return <div style={{ color: 'red' }}>{error}</div>;
+
+  if (levelCompleted) {
+    return (
+      <div className="quiz-card">
+        <h2 className="quiz-title">Level {currentLevel} Completed</h2>
+        <div style={{ fontSize: 24, margin: '16px 0' }}>Score: {score}</div>
+        <div className="quiz-materials">
+          <h3>Recommended Materials</h3>
+          {(materials || []).length ? (
+            <ul>
+              {materials.map((m, i) => (
+                <li key={i}>
+                  <a href={m.url} target="_blank" rel="noopener noreferrer">{m.title}</a> ({m.mediaType})
+                </li>
+              ))}
+            </ul>
+          ) : <p>No recommendations. Great job!</p>}
+        </div>
+        <button onClick={handleRedoLevel} className="quiz-btn" style={{ marginRight: 16 }}>Redo This Level</button>
+        <button onClick={handleNextLevel} className="quiz-btn">Enter Next Level</button>
+      </div>
+    );
+  }
+
   if (!question) return <div>No more questions.</div>;
 
   return (
-    <div style={{ maxWidth: 600, margin: '40px auto' }}>
-      <h2>Quiz</h2>
-      <div style={{ margin: '24px 0' }}>
-        <h3>{question.questionText}</h3>
-        {question.options.map((opt, i) => (
-          <div key={i} style={{ margin: '8px 0' }}>
-            <label>
-              <input
-                type="radio"
-                name="option"
-                checked={selected === i}
-                onChange={() => setSelected(i)}
-                disabled={showExplanation}
-              />{' '}
-              {opt}
-            </label>
+    <>
+      {showFeedback ? (
+        <div className="quiz-card">
+          <h2 className="quiz-title">
+            {answerResult.isCorrect ? 'Correct!' : 'Incorrect!'}
+          </h2>
+          <div style={{ fontSize: 24, margin: '16px 0' }}>
+            {answerResult.isCorrect
+              ? 'Well done!'
+              : `The correct answer is: ${question.options[question.correctAnswer]}`}
           </div>
-        ))}
-      </div>
-      {!showExplanation ? (
-        <button
-          className="btn"
-          style={{ padding: '8px 24px', background: '#3498db', color: '#fff', border: 'none', borderRadius: 4 }}
-          disabled={selected === undefined}
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      ) : (
-        <div>
-          <div style={{ margin: '16px 0', color: isCorrect ? 'green' : 'red' }}>
-            {isCorrect ? 'Correct!' : 'Incorrect.'}
-          </div>
-          <div style={{ marginBottom: 12 }}><b>Explanation:</b> {explanation}</div>
-          {materials.length > 0 && (
-            <div style={{ marginBottom: 12 }}>
-              <b>Recommended Materials:</b>
+          <div className="quiz-materials">
+            <h3>Recommended Materials</h3>
+            {(materials || []).length ? (
               <ul>
-                {materials.map((m, idx) => (
-                  <li key={idx}>
+                {materials.map((m, i) => (
+                  <li key={i}>
                     <a href={m.url} target="_blank" rel="noopener noreferrer">{m.title}</a> ({m.mediaType})
                   </li>
                 ))}
               </ul>
-            </div>
+            ) : <p>No recommendations. Great job!</p>}
+          </div>
+          {answerResult.isCorrect ? (
+            <button
+              className="quiz-btn"
+              onClick={() => {
+                setShowFeedback(false);
+                setSelected(undefined);
+                setAnswerResult(null);
+                loadNext();
+              }}
+            >
+              Next Question
+            </button>
+          ) : (
+            <button
+              className="quiz-btn"
+              onClick={() => {
+                setShowFeedback(false);
+                setSelected(undefined);
+                setAnswerResult(null);
+              }}
+            >
+              Redo This Question
+            </button>
           )}
-          <button onClick={handleNext}>Next Question</button>
+        </div>
+      ) : (
+        <div className="quiz-card">
+          <h2 className="quiz-title">Quiz - Level {currentLevel}</h2>
+          <div className="quiz-question">{question.questionText}</div>
+          <div className="quiz-options">
+            {question.options.map((opt, i) => (
+              <label key={i}>
+                <input
+                  type="radio"
+                  name="option"
+                  checked={selected === i}
+                  onChange={() => setSelected(i)}
+                  style={{ display: 'none' }}
+                />
+                <span>{opt}</span>
+              </label>
+            ))}
+          </div>
+          <button
+            className="quiz-btn"
+            disabled={selected === undefined}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
-export default QuizPage; 
+export default QuizPage;

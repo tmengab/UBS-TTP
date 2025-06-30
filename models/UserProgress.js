@@ -3,9 +3,14 @@ const mongoose = require('mongoose');
 const userProgressSchema = new mongoose.Schema({
   userId: { type: String, required: true },
   conceptId: { type: mongoose.Schema.Types.ObjectId, ref: 'Concept', required: true },
-  currentLevel: { type: Number, default: 1, min: 1, max: 5 },
-  correctInRow: { type: Number, default: 0 },
-  attemptedQuestions: { type: [mongoose.Schema.Types.ObjectId], default: [] },
+  currentLevel: { type: Number, default: 1, min: 1, max: 3 },
+  attemptedQuestions: { type: [{
+    questionId: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
+    isCorrect: Boolean,
+    userAnswer: Number,
+    level: Number
+  }], default: [] },
+  score: { type: Number, default: 0 },
   lastUpdated: { type: Date, default: Date.now }
 }, { timestamps: true });
 
